@@ -1,5 +1,3 @@
-USE_CAMERA_STUB := true
-
 # inherit from the proprietary version
 -include vendor/samsung/janice/BoardConfigVendor.mk
 
@@ -20,10 +18,16 @@ BOARD_USERDATAIMAGE_PARTITION_SIZE := 2147483648
 BOARD_FLASH_BLOCK_SIZE := 131072
 TARGET_USERIMAGES_USE_EXT4 := true
 BOARD_USES_MMCUTILS := true
-TARGET_RECOVERY_INITRC := device/samsung/u8500-common/rootdir/recovery.rc
+TARGET_RECOVERY_INITRC := device/samsung/montblanc-common/rootdir/recovery.rc
 BOARD_HAS_NO_SELECT_BUTTON := true
 
 TARGET_PREBUILT_KERNEL := device/samsung/janice/kernel
+
+# Camera
+USE_CAMERA_STUB := true
+ifeq ($(USE_CAMERA_STUB),false)
+BOARD_CAMERA_LIBRARIES := libcamera
+endif
 
 BOARD_SDCARD_INTERNAL_DEVICE := /dev/block/mmcblk1p1
 
